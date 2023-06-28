@@ -1,11 +1,9 @@
 package com.example.context;
 
 public class MessagePrinter {
+    private final MessageProducer messageProducer;
 
-    private final SimpleMessageProducer messageProducer;
-
-
-    public MessagePrinter(SimpleMessageProducer messageProducer) {
+    public MessagePrinter(MessageProducer messageProducer) {
         this.messageProducer = messageProducer;
     }
 
