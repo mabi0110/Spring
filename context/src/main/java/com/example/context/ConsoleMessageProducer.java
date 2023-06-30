@@ -1,7 +1,10 @@
 package com.example.context;
 
+import org.springframework.stereotype.Service;
+
 import java.util.Scanner;
 
+@Service
 public class ConsoleMessageProducer implements MessageProducer{
     @Override
     public String getMessage() {
