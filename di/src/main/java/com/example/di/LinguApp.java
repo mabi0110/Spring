@@ -1,8 +1,23 @@
 package com.example.di;
 
+
+import org.springframework.boot.SpringApplication;
+import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.context.ConfigurableApplicationContext;
+import org.springframework.context.annotation.Bean;
+
+import java.util.Scanner;
+
+@SpringBootApplication
 public class LinguApp {
     public static void main(String[] args) {
-        LinguController controller = new LinguController();
+        ConfigurableApplicationContext context = SpringApplication.run(LinguApp.class);
+        LinguController controller = context.getBean(LinguController.class);
         controller.mainLoop();
+    }
+
+    @Bean
+    Scanner scanner(){
+        return new Scanner(System.in);
     }
 }

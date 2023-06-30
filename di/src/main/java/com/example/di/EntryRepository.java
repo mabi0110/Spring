@@ -1,12 +1,15 @@
 package com.example.di;
 
+import org.springframework.stereotype.Repository;
+
 import java.io.IOException;
 import java.util.*;
+
+@Repository
 public class EntryRepository {
     private List<Entry> entries;
 
-    EntryRepository() {
-        FileService fileService = new FileService();
+    EntryRepository(FileService fileService) {
         try {
             this.entries = fileService.readAllFile();
         } catch (IOException e) {
