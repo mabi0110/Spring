@@ -1,4 +1,4 @@
-package com.example.context;
+package com.example.context.producer;
 
 public interface MessageProducer {
 
