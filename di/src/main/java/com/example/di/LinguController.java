@@ -14,15 +14,18 @@ public class LinguController {
     private final FileService fileService;
     private final Scanner scanner;
 
-    public LinguController(EntryRepository entryRepository, FileService fileService, Scanner scanner) {
+    private final ConsoleOutputPrinter consoleOutputPrinter;
+
+    public LinguController(EntryRepository entryRepository, FileService fileService, Scanner scanner, ConsoleOutputPrinter consoleOutputPrinter) {
         this.entryRepository = entryRepository;
         this.fileService = fileService;
         this.scanner = scanner;
+        this.consoleOutputPrinter = consoleOutputPrinter;
     }
 
 
     void mainLoop() {
-        System.out.println("Witaj w aplikacji LinguApp");
+        consoleOutputPrinter.printText("Witaj w aplikacji LinguApp");
         Option option = null;
         do {
             printMenu();
@@ -30,7 +33,7 @@ public class LinguController {
                 option = chooseOption();
                 executeOption(option);
             } catch (IllegalArgumentException e) {
-                System.out.println(e.getMessage());
+                consoleOutputPrinter.printText(e.getMessage());
             }
         } while (option != Option.EXIT);
     }
@@ -51,29 +54,29 @@ public class LinguController {
 
     private void startTest() {
         if(entryRepository.isEmpty()) {
-            System.out.println("Dodaj przynajmniej jedną frazę do bazy.");
+            consoleOutputPrinter.printText("Dodaj przynajmniej jedną frazę do bazy");
             return;
         }
         final int testSize = Math.min(entryRepository.size(), TEST_SIZE);
         Set<Entry> randomEntries = entryRepository.getRandomEntries(testSize);
         int score = 0;
         for (Entry entry : randomEntries) {
-            System.out.printf("Podaj tłumaczenie dla :\"%s\"\n", entry.getOriginal());
+            consoleOutputPrinter.printText("Podaj tłumaczenie dla : " + entry.getOriginal());
             String translation = scanner.nextLine();
             if(entry.getTranslation().equalsIgnoreCase(translation)) {
-                System.out.println("Odpowiedź poprawna");
+                consoleOutputPrinter.printText("Odpowiedź poprawna");
                 score++;
             } else {
-                System.out.println("Odpowiedź niepoprawna - " + entry.getTranslation());
+                consoleOutputPrinter.printText("Odpowiedź niepoprawna - " + entry.getTranslation());
             }
         }
-        System.out.printf("Twój wynik: %d/%d\n", score, testSize);
+        consoleOutputPrinter.printText("Twój wynik: " + score + "/" + testSize);
     }
 
     private void addEntry() {
-        System.out.println("Podaj oryginalną frazę");
+        consoleOutputPrinter.printText("Podaj oryginalną frazę");
         String original = scanner.nextLine();
-        System.out.println("Podaj tłumaczenie");
+        consoleOutputPrinter.printText("Podaj tłumaczenie");
         String translation = scanner.nextLine();
         Entry entry = new Entry(original, translation);
         entryRepository.add(entry);
@@ -82,17 +85,17 @@ public class LinguController {
     private void close() {
         try {
             fileService.saveEntries(entryRepository.getAll());
-            System.out.println("Zapisano stan aplikacji");
+            consoleOutputPrinter.printText("Zapisano stan aplikacji");
         } catch (IOException e) {
-            System.out.println("Nie udało się zapisać zmian");
+            consoleOutputPrinter.printText("Nie udało się zapisać zmian");
         }
-        System.out.println("Bye Bye!");
+        consoleOutputPrinter.printText("Bye Bye!");
     }
 
     private void printMenu() {
-        System.out.println("Wybierz opcję:");
+        consoleOutputPrinter.printText("Wybierz opcję:");
         for (Option option : Option.values()) {
-            System.out.println(option);
+            consoleOutputPrinter.printText(option.toString());
         }
     }
     private static enum Option {
