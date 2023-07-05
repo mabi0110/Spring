@@ -12,6 +12,13 @@ import java.util.Scanner;
 @Service
 @Profile("file")
 public class FileMessageProducer implements MessageProducer{
+
+    private final Scanner scanner;
+
+    public FileMessageProducer(Scanner scanner) {
+        this.scanner = scanner;
+    }
+
     @Override
     public String getMessage() {
         Path path = getPath();
@@ -24,7 +31,6 @@ public class FileMessageProducer implements MessageProducer{
 
     private Path getPath(){
         System.out.println("Podaj nazwe pliku: ");
-        Scanner scanner = new Scanner(System.in);
         String fileName = scanner.nextLine();
         return Path.of(fileName);
     }
