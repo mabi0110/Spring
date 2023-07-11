@@ -1,10 +1,15 @@
 package com.example.todo;
 
-import java.time.LocalDate;
+
+import jakarta.persistence.Entity;
+import jakarta.persistence.Id;
+
 import java.time.LocalDateTime;
 
+@Entity
 public class Task {
 
+    @Id
     private Long id;
     public String title;
     public String description;
@@ -12,6 +17,10 @@ public class Task {
     private LocalDateTime startTime;
     private LocalDateTime completionTime;
 
+
+    public Task(){
+
+    }
 
     public Task(String title, String description, int priority) {
         this.title = title;
