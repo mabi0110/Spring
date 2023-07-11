@@ -15,4 +15,23 @@ public class Bike {
     private String borrowerId;
     public Bike(){}
 
+    public Bike(Long id, String model, String numberNo, double hourPrice, double dayPrice) {
+        this.id = id;
+        this.model = model;
+        this.numberNo = numberNo;
+        this.hourPrice = hourPrice;
+        this.dayPrice = dayPrice;
+    }
+
+    @Override
+    public String toString() {
+        return "Bike{" +
+                "id=" + id +
+                ", model='" + model + '\'' +
+                ", numberNo='" + numberNo + '\'' +
+                ", hourPrice=" + hourPrice +
+                ", dayPrice=" + dayPrice +
+                ", borrowerId='" + borrowerId + '\'' +
+                '}';
+    }
 }
