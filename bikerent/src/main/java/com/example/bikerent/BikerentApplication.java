@@ -8,7 +8,6 @@ import org.springframework.context.ConfigurableApplicationContext;
 public class BikerentApplication {
 
     public static void main(String[] args) {
-
         ConfigurableApplicationContext context = SpringApplication.run(BikerentApplication.class, args);
         BikeService bikeService = context.getBean(BikeService.class);
         BikeDto bikeDto1 = new BikeDto(1L, "Kross", "KRS12345", 30, 100);

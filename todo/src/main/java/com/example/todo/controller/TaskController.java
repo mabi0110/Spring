@@ -1,11 +1,15 @@
 package com.example.todo.controller;
 
+import com.example.todo.dto.TaskDurationDto;
+import com.example.todo.exception.TaskAlreadyStartedException;
+import com.example.todo.exception.TaskAlreadyStoppedException;
+import com.example.todo.exception.TaskNotStartedException;
 import com.example.todo.model.Task;
-import com.example.todo.model.TaskDto;
+import com.example.todo.dto.TaskDto;
 import com.example.todo.service.TaskService;
 import org.springframework.stereotype.Controller;
 
-import java.util.Optional;
+import java.time.LocalDateTime;
 import java.util.Scanner;
 
 @Controller
@@ -34,21 +38,30 @@ public class TaskController {
             case PRINT_SINGLE -> printTask();
             case START_TASK -> startTask();
             case END_TASK -> endTask();
-            
             case EXIT -> exit();
         }
     }
 
     private void endTask() {
         long taskId = getTaskId();
-        taskService.endTask(taskId);
+        try {
+            TaskDurationDto taskDuration = taskService.endTask(taskId);
+            System.out.println(taskDuration);
+        } catch (TaskAlreadyStoppedException e){
+            System.out.println("Zadanie zostało juz wczesniej zakończone");
+        } catch (TaskNotStartedException e){
+            System.out.println("Zadanie jeszcze nie wystartowało");
+        }
     }
 
     private void startTask() {
         long taskId = getTaskId();
-        taskService.startTask(taskId);
-
-
+        try {
+            LocalDateTime taskStartTime = taskService.startTask(taskId);
+            System.out.println("Czas rozpoczęcia zadania: " + taskStartTime);
+        } catch (TaskAlreadyStartedException e){
+            System.out.println("Zadanie zostało juz wczesniej wystartowane");
+        }
     }
 
     private void addTask() {
@@ -60,13 +73,13 @@ public class TaskController {
         int priority = scanner.nextInt();
         scanner.nextLine();
         TaskDto taskDto = new TaskDto(title, description, priority);
-        Task savedTask = taskService.add(taskDto);
-        System.out.println("Zadanie zapisano z id: " + savedTask.getId());
+        Long savedTaskId = taskService.add(taskDto);
+        System.out.println("Zadanie zapisano z id: " + savedTaskId);
     }
 
     private void printTask() {
         long taskId = getTaskId();
-        taskService.findById(taskId)
+        taskService.getTaskInfo(taskId)
                 .ifPresentOrElse(
                         System.out::println,
                         () -> System.out.println("Brak wpisu o takim id")
