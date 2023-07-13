@@ -1,11 +1,11 @@
-package com.example.todo;
-
-import java.util.Optional;
+package com.example.todo.controller;
 
 public enum Option {
     ADD(1, "Dodaj nowe zadanie"),
     PRINT_SINGLE(2, "Wyświetl zadanie"),
-    EXIT(3, "Koniec programu");
+    START_TASK(3, "Wystartuj zadanie"),
+    END_TASK(4, "Zakończ zadanie"),
+    EXIT(5, "Koniec programu");
 
 
     private final int number;

@@ -1,6 +1,6 @@
-package com.example.todo;
+package com.example.todo.repository;
 
-import org.springframework.stereotype.Repository;
+import com.example.todo.model.Task;
 
 import java.util.HashMap;
 import java.util.Map;

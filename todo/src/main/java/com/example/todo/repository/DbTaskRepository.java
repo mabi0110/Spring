@@ -1,8 +1,8 @@
-package com.example.todo;
+package com.example.todo.repository;
 
+import com.example.todo.model.Task;
 import jakarta.persistence.EntityManager;
 import org.springframework.stereotype.Repository;
-import org.springframework.transaction.annotation.Transactional;
 
 import java.util.Optional;
 
@@ -17,7 +17,6 @@ public class DbTaskRepository implements TaskRepository {
     }
 
     @Override
-    @Transactional
     public Task save(Task task) {
         task.setId(nextId);
         entityManager.persist(task);

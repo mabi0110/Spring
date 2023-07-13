@@ -1,17 +1,21 @@
-package com.example.todo;
+package com.example.todo.controller;
 
+import com.example.todo.model.Task;
+import com.example.todo.model.TaskDto;
+import com.example.todo.service.TaskService;
 import org.springframework.stereotype.Controller;
 
+import java.util.Optional;
 import java.util.Scanner;
 
 @Controller
 public class TaskController {
 
-    private final TaskRepository taskRepository;
+    private final TaskService taskService;
     private final Scanner scanner;
 
-    public TaskController(TaskRepository taskRepository, Scanner scanner) {
-        this.taskRepository = taskRepository;
+    public TaskController(TaskService taskService, Scanner scanner) {
+        this.taskService = taskService;
         this.scanner = scanner;
     }
 
@@ -28,8 +32,23 @@ public class TaskController {
         switch (option) {
             case ADD -> addTask();
             case PRINT_SINGLE -> printTask();
+            case START_TASK -> startTask();
+            case END_TASK -> endTask();
+            
             case EXIT -> exit();
         }
+    }
+
+    private void endTask() {
+        long taskId = getTaskId();
+        taskService.endTask(taskId);
+    }
+
+    private void startTask() {
+        long taskId = getTaskId();
+        taskService.startTask(taskId);
+
+
     }
 
     private void addTask() {
@@ -40,22 +59,26 @@ public class TaskController {
         System.out.println("Priorytet (wyzsza liczba = wyzszy priorytet): ");
         int priority = scanner.nextInt();
         scanner.nextLine();
-        Task task = new Task(title, description, priority);
-        Task savedTask = taskRepository.save(task);
+        TaskDto taskDto = new TaskDto(title, description, priority);
+        Task savedTask = taskService.add(taskDto);
         System.out.println("Zadanie zapisano z id: " + savedTask.getId());
     }
 
     private void printTask() {
-        System.out.println("Podaj id zadania: ");
-        long taskId = scanner.nextLong();
-        scanner.nextLine();
-        taskRepository.findById(taskId)
+        long taskId = getTaskId();
+        taskService.findById(taskId)
                 .ifPresentOrElse(
                         System.out::println,
                         () -> System.out.println("Brak wpisu o takim id")
                 );
     }
 
+    private long getTaskId() {
+        System.out.println("Podaj id zadania: ");
+        long taskId = scanner.nextLong();
+        scanner.nextLine();
+        return taskId;
+    }
 
     private void exit() {
         System.out.println("Koniec programu");

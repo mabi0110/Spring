@@ -1,4 +1,6 @@
-package com.example.todo;
+package com.example.todo.repository;
+
+import com.example.todo.model.Task;
 
 import java.util.Optional;
 

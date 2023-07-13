@@ -1,15 +1,9 @@
-package com.example.todo;
-
-
-import jakarta.persistence.Entity;
-import jakarta.persistence.Id;
+package com.example.todo.model;
 
 import java.time.LocalDateTime;
 
-@Entity
-public class Task {
+public class TaskDto {
 
-    @Id
     private Long id;
     public String title;
     public String description;
@@ -17,16 +11,12 @@ public class Task {
     private LocalDateTime startTime;
     private LocalDateTime completionTime;
 
-
-    public Task(){
-
-    }
-
-    public Task(String title, String description, int priority) {
+    public TaskDto(String title, String description, int priority) {
         this.title = title;
         this.description = description;
         this.priority = priority;
     }
+
 
     public Long getId() {
         return id;
@@ -74,21 +64,5 @@ public class Task {
 
     public void setCompletionTime(LocalDateTime completionTime) {
         this.completionTime = completionTime;
-    }
-
-    @Override
-    public String toString() {
-        String start = startTime == null ? "Nierozpoczęte" : "Rozpoczęte " + startTime;
-        String end = completionTime == null ? null : "Zakończone " + completionTime;
-        String timeInfo;
-        if (completionTime == null) {
-            timeInfo = start;
-        } else {
-            timeInfo = String.format("%s / %s", start, end);
-        }
-        return String.format(
-                "Zadanie %d: %s (%s). Priorytet: %d. %s",
-                id, title, description, priority, timeInfo
-        );
     }
 }
