@@ -13,6 +13,7 @@ public class BikeRepository {
 
     public BikeRepository(EntityManager entityManager) {
         this.entityManager = entityManager;
+
     }
 
     @Transactional

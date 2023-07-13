@@ -16,6 +16,8 @@ public class BikerentApplication {
         Bike bike2 = new Bike(2L, "Trek", "TRK12345", 25, 80);
         bikeRepository.save(bike2);
 
+        bike1.setModel("AAA12345");
+
         bikeRepository.findById(1L).ifPresent(System.out::println);
         bikeRepository.deleteById(2L);
         bikeRepository.findById(2L).ifPresentOrElse(
