@@ -16,7 +16,6 @@ public class BikeRepository {
 
     }
 
-    @Transactional
     public void save(Bike bike){
         entityManager.persist(bike);
     }
@@ -26,12 +25,7 @@ public class BikeRepository {
         return Optional.ofNullable(bike);
     }
 
-    @Transactional
     public void deleteById(Long id){
-//        Bike bike = entityManager.find(Bike.class, id);
-//        if (bike != null){
-//            entityManager.remove(bike);
-//        }
         findById(id).ifPresent(entityManager::remove);
     }
 }

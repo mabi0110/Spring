@@ -10,19 +10,12 @@ public class BikerentApplication {
     public static void main(String[] args) {
 
         ConfigurableApplicationContext context = SpringApplication.run(BikerentApplication.class, args);
-        BikeRepository bikeRepository = context.getBean(BikeRepository.class);
-        Bike bike1 = new Bike(1L, "Kross", "KRS12345", 30, 100);
-        bikeRepository.save(bike1);
-        Bike bike2 = new Bike(2L, "Trek", "TRK12345", 25, 80);
-        bikeRepository.save(bike2);
+        BikeService bikeService = context.getBean(BikeService.class);
+        BikeDto bikeDto1 = new BikeDto(1L, "Kross", "KRS12345", 30, 100);
+        bikeService.add(bikeDto1);
+        double payment = bikeService.rentForHours(1L, 5, "ABC");
+        System.out.println("Kwota za wypozyczenie: " + payment);
+        bikeService.returnBike(1L);
 
-        bike1.setModel("AAA12345");
-
-        bikeRepository.findById(1L).ifPresent(System.out::println);
-        bikeRepository.deleteById(2L);
-        bikeRepository.findById(2L).ifPresentOrElse(
-                System.out::println,
-                () -> System.out.println("Brak roweru o wskazanym id"));
     }
-
 }
