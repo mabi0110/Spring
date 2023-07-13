@@ -3,7 +3,7 @@ package com.example.todo.service;
 
 import com.example.todo.exception.TaskAlreadyStoppedException;
 import com.example.todo.exception.TaskNotFoundException;
-import com.example.todo.exception.TaskStartedException;
+import com.example.todo.exception.TaskAlreadyStartedException;
 import com.example.todo.model.Task;
 import com.example.todo.model.TaskDto;
 import com.example.todo.repository.TaskRepository;
@@ -68,7 +68,7 @@ public class TaskService {
         Task task = taskRepository.findById(taskId)
                 .orElseThrow(TaskNotFoundException::new);
         if (task.getStartTime() != null) {
-            throw new TaskStartedException();
+            throw new TaskAlreadyStartedException();
         } else {
             task.setStartTime(startTime);
         }
