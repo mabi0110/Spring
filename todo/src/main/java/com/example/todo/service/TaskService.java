@@ -18,6 +18,7 @@ import java.util.Optional;
 @Service
 public class TaskService {
 
+    private static long nextId = 1;
     private final TaskRepository taskRepository;
 
     public TaskService(TaskRepository taskRepository) {
@@ -30,7 +31,9 @@ public class TaskService {
                 taskDto.getTitle(),
                 taskDto.getDescription(),
                 taskDto.getPriority());
+        task.setId(nextId);
         Task savedTask = taskRepository.save(task);
+        nextId++;
         return savedTask.getId();
     }
 

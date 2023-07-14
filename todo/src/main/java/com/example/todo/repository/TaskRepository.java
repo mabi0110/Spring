@@ -1,11 +1,6 @@
 package com.example.todo.repository;
 
 import com.example.todo.model.Task;
+import org.springframework.data.repository.CrudRepository;
 
-import java.util.Optional;
-
-public interface TaskRepository {
-
-    Task save(Task task);
-    Optional<Task> findById(Long id);
-}
+public interface TaskRepository extends CrudRepository<Task, Long> { }
