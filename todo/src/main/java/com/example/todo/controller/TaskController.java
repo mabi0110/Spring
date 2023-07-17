@@ -35,11 +35,21 @@ public class TaskController {
     private void evaluateOption(Option option) {
         switch (option) {
             case ADD -> addTask();
+            case PRINT_NOT_STARTED_TASKS -> printNotStartedTasks();
+            case PRINT_COMPLETED_TASKS -> printCompletedTasks();
             case PRINT_SINGLE -> printTask();
             case START_TASK -> startTask();
             case END_TASK -> endTask();
             case EXIT -> exit();
         }
+    }
+
+    private void printNotStartedTasks() {
+        taskService.getAllNotStartedTasksInfo().forEach(System.out::println);
+    }
+
+    private void printCompletedTasks() {
+        taskService.getAllCompletedTasksInfo().forEach(System.out::println);
     }
 
     private void endTask() {

@@ -24,4 +24,13 @@ public class TaskDto {
         return priority;
     }
 
+
+    @Override
+    public String toString() {
+        return "TaskDto{" +
+                "title='" + title + '\'' +
+                ", description='" + description + '\'' +
+                ", priority=" + priority +
+                '}';
+    }
 }
