@@ -11,7 +11,7 @@ public class Bike {
     @Id
     private Long id;
     private String model;
-    private String numberNo;
+    private String serialNo;
     private double hourPrice;
     private double dayPrice;
     private String borrowerId;
@@ -20,10 +20,10 @@ public class Bike {
 
     public Bike(){}
 
-    public Bike(Long id, String model, String numberNo, double hourPrice, double dayPrice) {
+    public Bike(Long id, String model, String serialNo, double hourPrice, double dayPrice) {
         this.id = id;
         this.model = model;
-        this.numberNo = numberNo;
+        this.serialNo = serialNo;
         this.hourPrice = hourPrice;
         this.dayPrice = dayPrice;
     }
@@ -44,12 +44,12 @@ public class Bike {
         this.model = model;
     }
 
-    public String getNumberNo() {
-        return numberNo;
+    public String getSerialNo() {
+        return serialNo;
     }
 
-    public void setNumberNo(String numberNo) {
-        this.numberNo = numberNo;
+    public void setSerialNo(String serialNo) {
+        this.serialNo = serialNo;
     }
 
     public double getHourPrice() {
@@ -89,7 +89,7 @@ public class Bike {
         return "Bike{"
                 + "id=" + id
                 + ", model='" + model + '\''
-                + ", numberNo='" + numberNo + '\''
+                + ", serialNo='" + serialNo + '\''
                 + ", hourPrice=" + hourPrice
                 + ", dayPrice=" + dayPrice
                 + ", borrowerId='" + borrowerId + '\''

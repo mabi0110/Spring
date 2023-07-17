@@ -3,14 +3,14 @@ package com.example.bikerent;
 public class BikeDto {
     private Long id;
     private String model;
-    private String numberNo;
+    private String serialNo;
     private double hourPrice;
     private double dayPrice;
 
-    public BikeDto(Long id, String model, String numberNo, double hourPrice, double dayPrice) {
+    public BikeDto(Long id, String model, String serialNo, double hourPrice, double dayPrice) {
         this.id = id;
         this.model = model;
-        this.numberNo = numberNo;
+        this.serialNo = serialNo;
         this.hourPrice = hourPrice;
         this.dayPrice = dayPrice;
     }
@@ -31,12 +31,12 @@ public class BikeDto {
         this.model = model;
     }
 
-    public String getNumberNo() {
-        return numberNo;
+    public String getSerialNo() {
+        return serialNo;
     }
 
-    public void setNumberNo(String numberNo) {
-        this.numberNo = numberNo;
+    public void setSerialNo(String serialNo) {
+        this.serialNo = serialNo;
     }
 
     public double getHourPrice() {
@@ -53,5 +53,16 @@ public class BikeDto {
 
     public void setDayPrice(double dayPrice) {
         this.dayPrice = dayPrice;
+    }
+
+    @Override
+    public String toString() {
+        return "BikeDto{" +
+                "id=" + id +
+                ", model='" + model + '\'' +
+                ", serialNo='" + serialNo + '\'' +
+                ", hourPrice=" + hourPrice +
+                ", dayPrice=" + dayPrice +
+                '}';
     }
 }
