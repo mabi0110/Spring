@@ -12,25 +12,16 @@ public class OneToOneApplication {
     public static void main(String[] args) {
 
         ConfigurableApplicationContext context = SpringApplication.run(OneToOneApplication.class, args);
-        UserDetails userDetails = new UserDetails("Jan", "Kowalski", "Wrocław, 50-503, ul. Legnicka 32/16");
-        UserDetailsRepository userDetailsRepository = context.getBean(UserDetailsRepository.class);
-        userDetailsRepository.save(userDetails);
-
-        UserRepository userRepository = context.getBean(UserRepository.class);
-        User user = new User("johnkowal", "strongpassword1", "johnkowal@example.com", userDetails);
-        userRepository.save(user);
-
-        Optional<User> firstUser = userRepository.findById(1L);
-        System.out.println("Informacje o pierwszym użytkowniku:");
-        firstUser.ifPresent(System.out::println);
-        System.out.println("Szczegóły pierwszego użytkownika:");
-        firstUser.map(User::getUserDetails).ifPresent(System.out::println);
-
-        System.out.println("Szczegóły pierwszego użytkownika pobrane z bazy:");
-        Optional<UserDetails> firstDetails = userDetailsRepository.findById(1L);
-        firstDetails.ifPresent(System.out::println);
-        System.out.println("Użytkownik powiązany ze szczegółami:");
-        firstDetails.map(UserDetails::getUser).ifPresent(System.out::println);
+        ClientOrder order1 = new ClientOrder("Szafa modułowa", "Szafa modułowa BigBox z drzwiami przesuwnymi, 160x240cm", 1900.0);
+        ClientOrder order2 = new ClientOrder("Łóżko", "Łóżko 160x200 z podnoszonym stelażem i skrzynią", 3200.0);
+        ClientOrderRepository clientOrderRepository = context.getBean(ClientOrderRepository.class);
+        clientOrderRepository.save(order1);
+        clientOrderRepository.save(order2);
+        Client client = new Client("Jan", "Kowalski", "Wysoka 40, 12-345 Chałupkowo");
+        client.addOrder(order1);
+        client.addOrder(order2);
+        ClientRepository clientRepository = context.getBean(ClientRepository.class);
+        clientRepository.save(client);
     }
 
 }
