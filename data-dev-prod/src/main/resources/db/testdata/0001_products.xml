@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+        https://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-4.2.xsd">
+    <changeSet id="0001-testdata-1" author="javastart">
+        <insert tableName="product">
+            <column name="name" value="mleko"/>
+            <column name="price" value="3.2"/>
+            <column name="description" value="testowy opis mleka"/>
+        </insert>
+        <insert tableName="product">
+            <column name="name" value="czekolada"/>
+            <column name="price" value="2.8"/>
+            <column name="description" value="testowy opis czekolady"/>
+        </insert>
+        <insert tableName="product">
+            <column name="name" value="jogurt"/>
+            <column name="price" value="1.59"/>
+            <column name="description" value="testowy opis jogurtu"/>
+        </insert>
+        <insert tableName="product">
+            <column name="name" value="chleb"/>
+            <column name="price" value="3.8"/>
+            <column name="description" value="testowy opis chleba"/>
+        </insert>
+        <insert tableName="product">
+            <column name="name" value="masło"/>
+            <column name="price" value="4.99"/>
+            <column name="description" value="testowy opis masła"/>
+        </insert>
+    </changeSet>
+</databaseChangeLog>
