@@ -25,6 +25,12 @@ public class OneToOneApplication {
         firstUser.ifPresent(System.out::println);
         System.out.println("Szczegóły pierwszego użytkownika:");
         firstUser.map(User::getUserDetails).ifPresent(System.out::println);
+
+        System.out.println("Szczegóły pierwszego użytkownika pobrane z bazy:");
+        Optional<UserDetails> firstDetails = userDetailsRepository.findById(1L);
+        firstDetails.ifPresent(System.out::println);
+        System.out.println("Użytkownik powiązany ze szczegółami:");
+        firstDetails.map(UserDetails::getUser).ifPresent(System.out::println);
     }
 
 }

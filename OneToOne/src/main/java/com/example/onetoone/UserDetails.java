@@ -1,9 +1,6 @@
 package com.example.onetoone;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
+import jakarta.persistence.*;
 
 @Entity
 class UserDetails {
@@ -13,6 +10,9 @@ class UserDetails {
     private String firstName;
     private String lastName;
     private String address;
+
+    @OneToOne(mappedBy = "userDetails")
+    private User user;
 
     public UserDetails() {
     }
@@ -53,6 +53,14 @@ class UserDetails {
 
     public void setAddress(String address) {
         this.address = address;
+    }
+
+    public User getUser() {
+        return user;
+    }
+
+    public void setUser(User user) {
+        this.user = user;
     }
 
     @Override
