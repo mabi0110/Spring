@@ -13,8 +13,7 @@ class Client {
     private String firstName;
     private String lastName;
     private String address;
-    @OneToMany
-    @JoinColumn(name = "client_id")
+    @OneToMany(mappedBy = "client")
     private List<ClientOrder> orders = new ArrayList<>();
 
     public Client() {

@@ -10,14 +10,18 @@ class ClientOrder {
     private String product;
     private String details;
     private Double price;
+    @ManyToOne
+    @JoinColumn(name = "client_id")
+    private Client client;
 
     public ClientOrder() {
     }
 
-    public ClientOrder(String product, String details, Double price) {
+    public ClientOrder(String product, String details, Double price, Client client) {
         this.product = product;
         this.details = details;
         this.price = price;
+        this.client = client;
     }
 
     public Long getId() {
