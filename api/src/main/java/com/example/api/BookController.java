@@ -9,10 +9,17 @@ import org.springframework.web.bind.annotation.RestController;
 import java.util.List;
 
 @RestController
-@RequestMapping("/api/books")
+@RequestMapping(
+        value = "/api/books",
+        produces = {
+                MediaType.APPLICATION_XML_VALUE,
+                MediaType.APPLICATION_JSON_VALUE
+        }
+)
+
 public class BookController {
 
-    @GetMapping(produces = {MediaType.APPLICATION_XML_VALUE, MediaType.APPLICATION_JSON_VALUE})
+    @GetMapping
     List<Book> getAllBooks() {
         return List.of(
                 new Book("Harry Potter", "J. K. Rowling", 1997, 233),
