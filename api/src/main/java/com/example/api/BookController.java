@@ -12,7 +12,7 @@ import java.util.List;
 @RequestMapping("/api/books")
 public class BookController {
 
-    @GetMapping(produces = MediaType.APPLICATION_XML_VALUE)
+    @GetMapping(produces = {MediaType.APPLICATION_XML_VALUE, MediaType.APPLICATION_JSON_VALUE})
     List<Book> getAllBooks() {
         return List.of(
                 new Book("Harry Potter", "J. K. Rowling", 1997, 233),
