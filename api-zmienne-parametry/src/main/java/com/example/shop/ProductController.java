@@ -27,24 +27,19 @@ public class ProductController {
 
     @GetMapping("/{id}")
     ResponseEntity<Product> getProductById(@PathVariable Integer id) {
-        Product product = productRepository.findById(id);
-        if (product != null) {
-            return ResponseEntity.ok(product);
-        } else {
-            return ResponseEntity.notFound().build();
-        }
+        return  productRepository.findById(id)
+                //.map(product -> ResponseEntity.ok(product))
+                .map(ResponseEntity::ok)
+                .orElse(ResponseEntity.notFound().build());
     }
 
     @GetMapping("/{id}/producer")
     ResponseEntity<Producer> getProducerByProductId(@PathVariable Integer id) {
-        Product product = productRepository.findById(id);
-        if (product != null) {
-            Producer producer = product.getProducer();
-            if (producer != null) {
-                return ResponseEntity.ok(producer);
-            }
-        }
-        return ResponseEntity.notFound().build();
+       return  productRepository.findById(id)
+               .map(Product::getProducer)
+               .map(ResponseEntity::ok)
+               .orElse(ResponseEntity.notFound().build());
+
     }
     @GetMapping("/example")
     @ResponseStatus(HttpStatus.CREATED)
