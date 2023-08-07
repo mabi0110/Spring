@@ -27,4 +27,9 @@ public class ProductController {
         return productRepository.findById(id);
 
     }
+
+    @GetMapping("/{id}/producer")
+    Producer getProducerByProductId(@PathVariable Integer id) {
+        return productRepository.findById(id).getProducer();
+    }
 }
