@@ -1,5 +1,6 @@
 package com.example.shop;
 
+import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -31,5 +32,11 @@ public class ProductController {
     @GetMapping("/{id}/producer")
     Producer getProducerByProductId(@PathVariable Integer id) {
         return productRepository.findById(id).getProducer();
+    }
+
+    @GetMapping("/example")
+    @ResponseStatus(HttpStatus.CREATED)
+    void example() {
+
     }
 }
