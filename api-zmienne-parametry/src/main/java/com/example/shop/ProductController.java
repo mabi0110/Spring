@@ -1,8 +1,10 @@
 package com.example.shop;
 
 import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.rmi.server.RemoteRef;
 import java.util.List;
 
 @RestController
@@ -24,16 +26,26 @@ public class ProductController {
     }
 
     @GetMapping("/{id}")
-    Product getProductById(@PathVariable Integer id) {
-        return productRepository.findById(id);
-
+    ResponseEntity<Product> getProductById(@PathVariable Integer id) {
+        Product product = productRepository.findById(id);
+        if (product != null) {
+            return ResponseEntity.ok(product);
+        } else {
+            return ResponseEntity.notFound().build();
+        }
     }
 
     @GetMapping("/{id}/producer")
-    Producer getProducerByProductId(@PathVariable Integer id) {
-        return productRepository.findById(id).getProducer();
+    ResponseEntity<Producer> getProducerByProductId(@PathVariable Integer id) {
+        Product product = productRepository.findById(id);
+        if (product != null) {
+            Producer producer = product.getProducer();
+            if (producer != null) {
+                return ResponseEntity.ok(producer);
+            }
+        }
+        return ResponseEntity.notFound().build();
     }
-
     @GetMapping("/example")
     @ResponseStatus(HttpStatus.CREATED)
     void example() {
