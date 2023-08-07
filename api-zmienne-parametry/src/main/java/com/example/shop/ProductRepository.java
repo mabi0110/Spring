@@ -30,16 +30,18 @@ public class ProductRepository {
 
     // /products?name=mleko
     List<Product> findAllByName(String name) {
-        List<Product> result = new ArrayList<>();
-        for (Product product : products) {
-            if(product.getName().equalsIgnoreCase(name)){
-                result.add(product);
-            }
-        }
-        return result;
+        return products.stream().filter(p -> p.getName().equalsIgnoreCase(name)).toList();
     }
 
+    // /products/2
 
+    Product findById(int id) {
+        if (id > products.size()) {
+            return null;
+        } else {
+            return products.get(id - 1);
+        }
+    }
 
 
 }
