@@ -23,6 +23,23 @@ public class ProductRepository {
     }
 
 
+    // /products
+    List<Product> findAll() {
+        return products;
+    }
+
+    // /products?name=mleko
+    List<Product> findAllByName(String name) {
+        List<Product> result = new ArrayList<>();
+        for (Product product : products) {
+            if(product.getName().equalsIgnoreCase(name)){
+                result.add(product);
+            }
+        }
+        return result;
+    }
+
+
 
 
 }
