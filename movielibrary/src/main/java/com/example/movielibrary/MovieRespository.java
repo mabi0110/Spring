@@ -17,4 +17,17 @@ public class MovieRespository {
         return jdbcTemplate.query("select id, title, rating from movie",
                 BeanPropertyRowMapper.newInstance(Movie.class));
     }
+
+    public Movie getById(int id) {
+        return jdbcTemplate.queryForObject("select id, title, rating from movie where id = ?",
+                BeanPropertyRowMapper.newInstance(Movie.class), id);
+    }
+
+    public int save(List<Movie> movies) {
+        for (Movie movie : movies) {
+            jdbcTemplate.update("insert into movie(title, rating) values (?, ?)",
+                    movie.getTitle(), movie.getRating());
+        }
+        return 1;
+    }
 }
