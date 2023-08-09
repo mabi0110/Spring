@@ -40,5 +40,23 @@ public class MovieController {
         }
     }
 
+    @PatchMapping("/{id}")
+    public int partiallyUpdate(@PathVariable int id, @RequestBody Movie updatedMovie){
+        Movie movie = movieRespository.getById(id);
+        if (movie != null) {
+            if (updatedMovie.getTitle() != null) {
+                movie.setTitle(updatedMovie.getTitle());
+            }
+            if (updatedMovie.getRating() > 0) {
+                movie.setRating((updatedMovie.getRating()));
+            }
+            movieRespository.update(movie);
+            return 1;
+        } else {
+            return -1;
+        }
+
+    }
+
 
 }
