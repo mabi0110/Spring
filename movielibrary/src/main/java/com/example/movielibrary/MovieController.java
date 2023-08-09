@@ -62,6 +62,4 @@ public class MovieController {
         return movieRespository.delete(id);
     }
 
-
-
 }
