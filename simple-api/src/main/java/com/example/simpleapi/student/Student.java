@@ -3,6 +3,7 @@ package com.example.simpleapi.student;
 import jakarta.persistence.*;
 
 import java.time.LocalDate;
+import java.time.Period;
 
 @Entity
 public class Student {
@@ -12,24 +13,21 @@ public class Student {
     private Long id;
     private String name;
     private LocalDate dateOfBirth;
+    @Transient
     private Integer age;
     private String email;
-
     public Student() {}
 
-    public Student(Long id, String name, LocalDate dateOfBirth, Integer age, String email) {
+    public Student(Long id, String name, LocalDate dateOfBirth, String email) {
         this.id = id;
         this.name = name;
         this.dateOfBirth = dateOfBirth;
-        this.age = age;
         this.email = email;
     }
 
-
-    public Student(String name, LocalDate dateOfBirth, Integer age, String email) {
+    public Student(String name, LocalDate dateOfBirth, String email) {
         this.name = name;
         this.dateOfBirth = dateOfBirth;
-        this.age = age;
         this.email = email;
     }
 
@@ -58,7 +56,7 @@ public class Student {
     }
 
     public Integer getAge() {
-        return age;
+        return Period.between(this.dateOfBirth, LocalDate.now()).getYears();
     }
 
     public void setAge(Integer age) {
