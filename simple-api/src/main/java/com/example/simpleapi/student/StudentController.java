@@ -24,4 +24,9 @@ public class StudentController {
         studentService.addNewStudent(student);
     }
 
+    @DeleteMapping(path = "/{id}")
+    public void deleteStudent(@PathVariable Long id) {
+        studentService.deleteStudent(id);
+    }
+
 }

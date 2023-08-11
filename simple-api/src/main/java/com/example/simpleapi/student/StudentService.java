@@ -26,6 +26,14 @@ public class StudentService {
         }
         studentRepository.save(student);
     }
+
+    public void deleteStudent(Long id) {
+        Optional<Student> studentOptional = studentRepository.findById(id);
+        if(studentOptional.isEmpty()){
+            throw new IllegalStateException("Student does not exists");
+        }
+        studentRepository.deleteById(id);
+    }
 }
 
 
