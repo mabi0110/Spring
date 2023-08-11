@@ -1,6 +1,7 @@
 package com.example.simpleapi.student;
 
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.time.LocalDate;
 import java.util.List;
@@ -33,6 +34,24 @@ public class StudentService {
             throw new IllegalStateException("Student does not exists");
         }
         studentRepository.deleteById(id);
+    }
+
+    @Transactional
+    public void updateStudent(Long id, String name, String email) {
+        Student student = studentRepository.findById(id)
+                .orElseThrow(() -> new IllegalStateException("Student does not exists"));
+
+        if (name != null) {
+            student.setName(name);
+        }
+
+        if (email != null) {
+            Optional<Student> studentOptional = studentRepository.findStudentByEmail(email);
+            if(studentOptional.isPresent()) {
+                throw new IllegalStateException("Email already taken");
+            }
+            student.setEmail(email);
+        }
     }
 }
 
