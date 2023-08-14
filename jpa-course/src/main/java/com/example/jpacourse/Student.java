@@ -3,7 +3,12 @@ package com.example.jpacourse;
 import jakarta.persistence.*;
 
 @Entity(name="Student")
-@Table
+@Table(
+        name="student",
+        uniqueConstraints = {
+            @UniqueConstraint(name = "student_email_unique", columnNames = "email")
+        }
+)
 public class Student {
     @Id
     @SequenceGenerator(
@@ -35,8 +40,7 @@ public class Student {
 
     @Column(
             name = "email",
-            nullable = false,
-            unique = true
+            nullable = false
     )
     private String email;
 
