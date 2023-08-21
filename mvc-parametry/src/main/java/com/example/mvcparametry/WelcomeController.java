@@ -11,12 +11,7 @@ public class WelcomeController {
 
     @GetMapping("/hello")
     @ResponseBody
-    String hello(@RequestParam(value = "name", required = false) String name) {
-        if (name != null){
-            return "Hello " + name;
-        } else {
-            return "Hello stranger";
-        }
-
+    String hello(@RequestParam(required = false, defaultValue = "stranger") String name) {
+        return "Hello " + name;
     }
 }
