@@ -9,10 +9,10 @@
         <relativePath/> <!-- lookup parent from repository -->
     </parent>
     <groupId>com.example</groupId>
-    <artifactId>strona-glwona</artifactId>
+    <artifactId>strona-glowna</artifactId>
     <version>0.0.1-SNAPSHOT</version>
-    <name>strona-glwona</name>
-    <description>strona-glwona</description>
+    <name>strona-glowna</name>
+    <description>strona-glowna</description>
     <properties>
         <java.version>17</java.version>
     </properties>
