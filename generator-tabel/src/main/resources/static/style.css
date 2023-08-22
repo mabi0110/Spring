@@ -1,0 +1,12 @@
+.tableForm, .container {
+    display: flex;
+    flex-direction: column;
+}
+
+.container {
+    align-items: center;
+}
+
+.tableForm > * {
+    margin-top: 16px;
+}

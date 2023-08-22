@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Generator tabel</title>
+    <link rel="stylesheet" type="text/css" href="style.css">
+</head>
+<body>
+    <div class="container">
+        <h1>Generator tabel</h1>
+        <form method="post" action="/generate" class="tableForm">
+            <label for="headers">Nagłówki</label>
+            <input type="text" id="headers" name="headers" placeholder="nagłówek1;nagłówek2;nagłówek3">
+            <label for="data">Zawartość tabeli</label>
+            <textarea id="data" name="data" rows="10" cols="100" placeholder="wartość1;wartość2;wartość3"></textarea>
+            <button type="submit">Wygeneruj</button>
+        </form>
+    </div>`
+</body>
+</html>
