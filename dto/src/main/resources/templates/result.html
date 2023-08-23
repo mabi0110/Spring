@@ -6,8 +6,8 @@
 </head>
 <body>
   <h1>Wynik</h1>
-  <p th:text="'Kwota netto ' + ${netto}"></p>
-  <p th:text="'Kwota VAT ' + ${vat}"></p>
-  <p th:text="'Kwota brutto ' + ${brutto}"></p>
+  <p th:text="'Kwota netto ' + ${vatDto.netto}"></p>
+  <p th:text="'Kwota VAT ' + ${vatDto.vat}"></p>
+  <p th:text="'Kwota brutto ' + ${vatDto.brutto}"></p>
 </body>
 </html>
