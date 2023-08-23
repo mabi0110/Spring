@@ -22,7 +22,7 @@ class CalculatorTest {
     }
 
     @Test
-    public void shouldAdd51To1Result2() {
+    public void shouldAdd1To1Result2() {
         // given
         Calculator calculator = new Calculator();
         int a = 1;
