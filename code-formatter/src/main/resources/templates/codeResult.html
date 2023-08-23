@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="pl" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>CodeFormatter - wynik</title>
+    <link rel="stylesheet" href="/static/style.css">
+</head>
+<body>
+<div class="container">
+    <h1>Wynik formatowania</h1>
+    <div class="codeContainer">
+        <div>
+            <p>Kod przed formatowaniem</p>
+            <pre th:text="${unformattedCode}" class="codeBox"></pre>
+        </div>
+
+        <div>
+            <p>Kod po sformatowaniu</p>
+            <pre th:text="${formattedCode}" class="codeBox"></pre>
+        </div>
+    </div>
+</div>
+</body>
+</html>
