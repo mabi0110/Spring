@@ -33,10 +33,10 @@ class CalculatorTest {
         int result = calculator.add(a, b);
 
         // then
-//        Assertions.assertEquals(2, result);
-        if(result != 3){
-            throw new AssertionFailedError("Expected: " + 3 + " Actual: " + result);
-        }
+        Assertions.assertEquals(2, result);
+//        if (result != 2) {
+//            throw new AssertionFailedError("Expected: " + 2 + " Actual: " + result);
+//        }
     }
 
 }
