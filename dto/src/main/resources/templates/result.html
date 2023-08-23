@@ -1,0 +1,13 @@
+<!DOCTYPE html>
+<html lang="pl" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Wynik</title>
+</head>
+<body>
+  <h1>Wynik</h1>
+  <p th:text="'Kwota netto ' + ${netto}"></p>
+  <p th:text="'Kwota VAT ' + ${vat}"></p>
+  <p th:text="'Kwota brutto ' + ${brutto}"></p>
+</body>
+</html>
