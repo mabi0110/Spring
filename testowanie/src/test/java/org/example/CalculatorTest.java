@@ -2,6 +2,7 @@ package org.example;
 
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
+import org.opentest4j.AssertionFailedError;
 
 import static org.junit.jupiter.api.Assertions.*;
 
@@ -32,7 +33,10 @@ class CalculatorTest {
         int result = calculator.add(a, b);
 
         // then
-        Assertions.assertEquals(2, result);
+//        Assertions.assertEquals(2, result);
+        if(result != 3){
+            throw new AssertionFailedError("Expected: " + 3 + " Actual: " + result);
+        }
     }
 
 }
