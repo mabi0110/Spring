@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<html lang="en" th:lang="${lang}" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
     <title>Instrukcje sterujące</title>
@@ -7,6 +7,10 @@
 <body>
     <p th:unless="${person}">Nie przekazano obiektu reprezentującego osobę</p>
     <div th:if="${person}">
+        <div th:switch="${lang}">
+            <h1 th:case="pl">Cześć</h1>
+            <h1 th:case="en">Hello</h1>
+        </div>
         <p th:text="${person.firstName}"></p>
         <p th:text="${person.lastName}"></p>
         <p th:if="${person.age} >= 18">Pełnoletni</p>
