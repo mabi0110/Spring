@@ -10,11 +10,16 @@
         <div th:switch="${lang}">
             <h1 th:case="pl">Cześć</h1>
             <h1 th:case="en">Hello</h1>
+            <h1 th:case="*">Hello</h1>
         </div>
         <p th:text="${person.firstName}"></p>
         <p th:text="${person.lastName}"></p>
-        <p th:if="${person.age} >= 18">Pełnoletni</p>
-        <p th:unless="${person.age} >= 18">Nieleteni</p>
+        <p th:if="${person.age} ge 18">Pełnoletni</p>
+        <p th:unless="${person.age} ge 18">Nieleteni</p>
+
+        <p th:if="${person.firstName ne null and person.age ge 18}">
+            <span th:text="${person.firstName}"></span> jest pełnoletni
+        </p>
     </div>
 </body>
 </html>
