@@ -5,7 +5,12 @@
     <title>Instrukcje sterujące</title>
 </head>
 <body>
-
-
+    <p th:unless="${person}">Nie przekazano obiektu reprezentującego osobę</p>
+    <div th:if="${person}">
+        <p th:text="${person.firstName}"></p>
+        <p th:text="${person.lastName}"></p>
+        <p th:if="${person.age} >= 18">Pełnoletni</p>
+        <p th:unless="${person.age} >= 18">Nieleteni</p>
+    </div>
 </body>
 </html>
