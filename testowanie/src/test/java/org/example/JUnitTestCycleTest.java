@@ -1,23 +1,30 @@
 package org.example;
 
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
+
+import java.util.Random;
 
 public class JUnitTestCycleTest {
 
-    private int counter = 0;
+    private Random random;
+
+    @BeforeEach
+    public void init(){
+        random = new Random();
+        random.setSeed(12345L);
+    }
 
     @Test
     public void test1(){
-        counter++;
-        System.out.println("Test 1, counter: " + counter);
-        System.out.println("Test 1 " + this);
+        System.out.println("Test 1 " + random.nextInt());
+
     }
 
     @Test
     public void test2(){
-        counter++;
-        System.out.println("Test 2, counter: " + counter);
-        System.out.println("Test 2 " + this);
+
+        System.out.println("Test 2 " + random.nextInt());
     }
 
 }
