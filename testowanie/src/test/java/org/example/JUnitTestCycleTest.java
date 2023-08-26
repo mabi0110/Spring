@@ -1,5 +1,6 @@
 package org.example;
 
+import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
@@ -13,6 +14,11 @@ public class JUnitTestCycleTest {
     public void init(){
         System.out.println("init");
         random = new Random();
+    }
+
+    @AfterEach
+    public void after(){
+        System.out.println("after");
     }
 
     @Test
