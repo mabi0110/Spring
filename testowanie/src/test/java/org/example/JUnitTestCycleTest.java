@@ -4,9 +4,13 @@ import org.junit.jupiter.api.*;
 
 import java.util.Random;
 
+@TestInstance(TestInstance.Lifecycle.PER_CLASS)
+
 public class JUnitTestCycleTest {
 
     private Random random;
+
+    private int counter = 0;
 
     @BeforeAll
     public static void beforeAll(){
@@ -37,6 +41,18 @@ public class JUnitTestCycleTest {
     @Test
     public void test2(){
         System.out.println("Test 2 " + random.nextInt());
+    }
+
+    @Test
+    public void test3(){
+        counter++;
+        System.out.println("Test 3, counter: " + counter);
+    }
+
+    @Test
+    public void test4(){
+        counter++;
+        System.out.println("Test 4, counter: " + counter);
     }
 
 }
