@@ -3,20 +3,22 @@ package com.example.validation;
 import org.springframework.stereotype.Service;
 
 import java.util.Arrays;
-import java.util.Collection;
 import java.util.Collections;
 import java.util.List;
 
 @Service
 public class ClientService {
     private final ClientRepository clientRepository;
+    private final ClientDtoMapper clientDtoMapper;
 
 
-    public ClientService(ClientRepository clientRepository) {
+    public ClientService(ClientRepository clientRepository, ClientDtoMapper clientDtoMapper) {
         this.clientRepository = clientRepository;
+        this.clientDtoMapper = clientDtoMapper;
     }
 
-    public void register(Client client){
+    public void register(ClientDto clientDto){
+        Client client = clientDtoMapper.map(clientDto);
         String uniqueUserName = generateUserName(client);
         client.setUserName(uniqueUserName);
         clientRepository.save(client);
