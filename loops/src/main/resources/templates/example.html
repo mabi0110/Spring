@@ -5,6 +5,12 @@
     <title>Pętle</title>
 </head>
 <body>
+<h1>Lista osób</h1>
+<ul>
+    <li th:each="person: ${people}" th:text="${person.firstName} + ' '+ ${person.lastName}">
+        Jan Kowalski
+    </li>
 
+</ul>
 </body>
 </html>
