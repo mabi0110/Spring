@@ -7,10 +7,10 @@
 <body>
 <h1>Lista osób</h1>
 <ul>
-    <li th:each="person: ${people}" th:text="${person.firstName} + ' '+ ${person.lastName}">
-        Jan Kowalski
+    <li th:each="person: ${people}">
+        <span th:text="'Imię: ' + ${person.firstName}"></span>&nbsp
+        <span th:text="'Nazwisko: ' + ${person.lastName}"></span>
     </li>
-
 </ul>
 </body>
 </html>
