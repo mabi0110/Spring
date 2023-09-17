@@ -9,7 +9,8 @@ public class TextController {
 
     @GetMapping("/")
     String home(Model model) {
-        model.addAttribute("dangerousCode", "<script>alert('Masz wirusa');</script>");
+//        model.addAttribute("dangerousCode", "<script>alert('Masz wirusa');</script>");
+        model.addAttribute("firstName", "Jan");
         return "index";
     }
 }
