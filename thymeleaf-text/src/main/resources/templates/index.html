@@ -8,7 +8,7 @@
   <h1>Praca z tekstem</h1>
 <!--  <p th:utext="${dangerousCode}">Jakiś tekst</p>-->
 <!--  <p>Twoje imię: <span th:text="${firstName}"></span></p>-->
-    <p th:inline="text">Twoje imię: [[${firstName}]]</p>
-
+<!--    <p th:inline="text">Twoje imię: [[${firstName}]]</p>-->
+    <p th:text="'Twoje imię: ' + ${firstName}"></p>
 </body>
 </html>
