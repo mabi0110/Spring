@@ -11,6 +11,7 @@ public class TextController {
     String home(Model model) {
 //        model.addAttribute("dangerousCode", "<script>alert('Masz wirusa');</script>");
         model.addAttribute("firstName", "Jan");
+        model.addAttribute("lastName", "Nowak");
         return "index";
     }
 }
