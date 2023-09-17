@@ -22,11 +22,11 @@
         </tr>
         </thead>
         <tbody>
-            <tr th:each="product, status: ${products}">
+            <tr th:each="product, status: ${products}" th:object="${product}">
                 <td th:text="${status.count}">1</td>
-                <td th:text="${product.name}">Chipsy</td>
-                <td th:text="${product.producer}">Pan Chrupek</td>
-                <td th:text="${product.price}">1.9</td>
+                <td th:text="*{name}">Chipsy</td>
+                <td th:text="*{producer}">Pan Chrupek</td>
+                <td th:text="*{price}">1.9</td>
             </tr>
         </tbody>
     </table>
