@@ -16,6 +16,9 @@ import com.vaadin.flow.data.value.ValueChangeMode;
 import com.vaadin.flow.router.PageTitle;
 import com.vaadin.flow.router.Route;
 
+import java.util.ArrayList;
+import java.util.List;
+
 @Route("/hello")
 @PageTitle("Vaadin Title")
 public class MainView extends VerticalLayout {
@@ -95,7 +98,24 @@ public class MainView extends VerticalLayout {
             System.out.println(box.getValue());
         });
 
-        add(span, button, nameField, saveButton, textArea, checkBox, group, box);
+
+        List<Person> list = new ArrayList<>();
+        list.add(new Person("Adam", 21));
+        list.add(new Person("Anna", 45));
+        list.add(new Person("Kevin", 24));
+
+        ComboBox<Person> peopleBox = new ComboBox<>("Employee");
+        peopleBox.setItems(list);
+        peopleBox.setPlaceholder("Select an employee");
+
+        // specify what we want to show in ComboBox
+        peopleBox.setItemLabelGenerator(p -> p.getName() + " / " + p.getAge());
+
+        peopleBox.addValueChangeListener(event->{
+            System.out.println(peopleBox.getValue());
+        });
+
+        add(span, button, nameField, saveButton, textArea, checkBox, group, box, peopleBox);
     }
 
 
