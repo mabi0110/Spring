@@ -2,6 +2,7 @@ package com.example.vaadinbasics;
 
 import com.vaadin.flow.component.Text;
 import com.vaadin.flow.component.button.Button;
+import com.vaadin.flow.component.checkbox.Checkbox;
 import com.vaadin.flow.component.html.Span;
 import com.vaadin.flow.component.orderedlayout.VerticalLayout;
 import com.vaadin.flow.component.textfield.TextArea;
@@ -67,7 +68,15 @@ public class MainView extends VerticalLayout {
             System.out.println("Something has been changed");
         });
 
-        add(span, button, nameField, saveButton, textArea);
+        Checkbox checkBox = new Checkbox();
+        checkBox.setLabel("I agree");
+        checkBox.setEnabled(false);
+
+        checkBox.addValueChangeListener(event-> {
+            System.out.println(checkBox.getValue());
+        });
+
+        add(span, button, nameField, saveButton, textArea, checkBox);
     }
 
 
