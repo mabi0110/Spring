@@ -83,6 +83,10 @@ public class MainView extends VerticalLayout {
         group.setItems("Monday", "Tuesday", "Wednesday");
         group.addThemeVariants(CheckboxGroupVariant.LUMO_VERTICAL);
 
+        group.addValueChangeListener(event -> {
+            System.out.println(group.getValue());
+        });
+
         add(span, button, nameField, saveButton, textArea, checkBox, group);
     }
 
