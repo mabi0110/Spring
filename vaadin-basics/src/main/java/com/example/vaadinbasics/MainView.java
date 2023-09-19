@@ -5,6 +5,7 @@ import com.vaadin.flow.component.button.Button;
 import com.vaadin.flow.component.html.Label;
 import com.vaadin.flow.component.html.Span;
 import com.vaadin.flow.component.orderedlayout.VerticalLayout;
+import com.vaadin.flow.component.textfield.TextField;
 import com.vaadin.flow.router.PageTitle;
 import com.vaadin.flow.router.Route;
 
@@ -27,7 +28,15 @@ public class MainView extends VerticalLayout {
             add(new Text("Button has been clicked "));
         });
 
-        add(span, button);
+        TextField nameField = new TextField("Name");
+        nameField.setMinLength(3);
+        nameField.setMaxLength(10);
+
+        nameField.addValueChangeListener(event-> {
+            System.out.println("The value has been changed");
+        });
+
+        add(span, button, nameField);
 
     }
 
