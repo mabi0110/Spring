@@ -4,9 +4,11 @@ import com.vaadin.flow.component.Text;
 import com.vaadin.flow.component.button.Button;
 import com.vaadin.flow.component.html.Span;
 import com.vaadin.flow.component.orderedlayout.VerticalLayout;
+import com.vaadin.flow.component.textfield.TextArea;
 import com.vaadin.flow.component.textfield.TextField;
 import com.vaadin.flow.data.binder.Binder;
 import com.vaadin.flow.data.binder.ValidationException;
+import com.vaadin.flow.data.value.ValueChangeMode;
 import com.vaadin.flow.router.PageTitle;
 import com.vaadin.flow.router.Route;
 
@@ -51,7 +53,21 @@ public class MainView extends VerticalLayout {
             add(new Text(nameField.getValue()));
         });
 
-        add(span, button, nameField, saveButton);
+        TextArea textArea = new TextArea();
+        textArea.setLabel("Description");
+        textArea.setValue("Demonstration");
+        textArea.setMaxLength(20);
+        textArea.setHeight("200px");
+        textArea.setWidth("200px");
+
+        textArea.setValueChangeMode(ValueChangeMode.EAGER);
+
+        textArea.addValueChangeListener(event -> {
+            // this is called every time there is a change in the text area
+            System.out.println("Something has been changed");
+        });
+
+        add(span, button, nameField, saveButton, textArea);
     }
 
 
