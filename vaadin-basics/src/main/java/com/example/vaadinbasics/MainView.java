@@ -3,6 +3,8 @@ package com.example.vaadinbasics;
 import com.vaadin.flow.component.Text;
 import com.vaadin.flow.component.button.Button;
 import com.vaadin.flow.component.checkbox.Checkbox;
+import com.vaadin.flow.component.checkbox.CheckboxGroup;
+import com.vaadin.flow.component.checkbox.CheckboxGroupVariant;
 import com.vaadin.flow.component.html.Span;
 import com.vaadin.flow.component.orderedlayout.VerticalLayout;
 import com.vaadin.flow.component.textfield.TextArea;
@@ -76,7 +78,12 @@ public class MainView extends VerticalLayout {
             System.out.println(checkBox.getValue());
         });
 
-        add(span, button, nameField, saveButton, textArea, checkBox);
+        CheckboxGroup<String> group = new CheckboxGroup<>();
+        group.setLabel("Days");
+        group.setItems("Monday", "Tuesday", "Wednesday");
+        group.addThemeVariants(CheckboxGroupVariant.LUMO_VERTICAL);
+
+        add(span, button, nameField, saveButton, textArea, checkBox, group);
     }
 
 
