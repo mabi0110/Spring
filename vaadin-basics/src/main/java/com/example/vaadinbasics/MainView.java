@@ -31,12 +31,15 @@ public class MainView extends VerticalLayout {
         TextField nameField = new TextField("Name");
         nameField.setMinLength(3);
         nameField.setMaxLength(10);
-
         nameField.addValueChangeListener(event-> {
             System.out.println("The value has been changed");
         });
 
-        add(span, button, nameField);
+        Button saveButton = new Button("Save", event-> {
+            add(new Text(nameField.getValue()));
+        });
+
+        add(span, button, nameField, saveButton);
 
     }
 
