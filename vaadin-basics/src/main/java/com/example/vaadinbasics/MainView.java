@@ -5,6 +5,7 @@ import com.vaadin.flow.component.button.Button;
 import com.vaadin.flow.component.checkbox.Checkbox;
 import com.vaadin.flow.component.checkbox.CheckboxGroup;
 import com.vaadin.flow.component.checkbox.CheckboxGroupVariant;
+import com.vaadin.flow.component.combobox.ComboBox;
 import com.vaadin.flow.component.html.Span;
 import com.vaadin.flow.component.orderedlayout.VerticalLayout;
 import com.vaadin.flow.component.textfield.TextArea;
@@ -87,7 +88,14 @@ public class MainView extends VerticalLayout {
             System.out.println(group.getValue());
         });
 
-        add(span, button, nameField, saveButton, textArea, checkBox, group);
+        ComboBox<String> box = new ComboBox<>("Employee");
+        box.setItems("Kevin", "Adam", "Anna");
+
+        box.addValueChangeListener(event->{
+            System.out.println(box.getValue());
+        });
+
+        add(span, button, nameField, saveButton, textArea, checkBox, group, box);
     }
 
 
