@@ -8,6 +8,7 @@ import com.vaadin.flow.component.checkbox.CheckboxGroupVariant;
 import com.vaadin.flow.component.combobox.ComboBox;
 import com.vaadin.flow.component.grid.ColumnTextAlign;
 import com.vaadin.flow.component.grid.Grid;
+import com.vaadin.flow.component.grid.GridVariant;
 import com.vaadin.flow.component.html.Span;
 import com.vaadin.flow.component.orderedlayout.VerticalLayout;
 import com.vaadin.flow.component.textfield.TextArea;
@@ -123,14 +124,24 @@ public class MainView extends VerticalLayout {
         employee.add(new Person("Kevin", "kevin@example.com",24));
 
         Grid<Person> grid = new Grid<>(Person.class, false);
-        grid.addColumn(Person::getName).setHeader("Name").setTextAlign(ColumnTextAlign.CENTER);
-        grid.addColumn(Person::getEmail).setHeader("Email").setTextAlign(ColumnTextAlign.CENTER);
-        grid.addColumn(Person::getAge).setHeader("Age").setTextAlign(ColumnTextAlign.CENTER);
+        grid.addColumn(Person::getName).setHeader("Name").setSortable(true).setTextAlign(ColumnTextAlign.CENTER);
+        grid.addColumn(Person::getEmail).setHeader("Email").setSortable(true).setTextAlign(ColumnTextAlign.CENTER);
+        grid.addColumn(Person::getAge).setHeader("Age").setSortable(true).setTextAlign(ColumnTextAlign.CENTER);
 
         grid.setAllRowsVisible(true);
         grid.setItems(employee);
 
-        add(span, button, nameField, saveButton, textArea, checkBox, group, box, peopleBox, grid);
+        grid.addThemeVariants(GridVariant.LUMO_ROW_STRIPES);
+
+        Button removeButton = new Button("Remove");
+        removeButton.addClickListener(event -> {
+            System.out.println(grid.getSelectedItems());
+            employee.removeAll(grid.getSelectedItems());
+            // refresh the grid
+            grid.getDataProvider().refreshAll();
+        });
+
+        add(span, button, nameField, saveButton, textArea, checkBox, group, box, peopleBox, grid, removeButton);
     }
 
 
