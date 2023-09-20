@@ -11,6 +11,8 @@ import com.vaadin.flow.component.grid.Grid;
 import com.vaadin.flow.component.grid.GridVariant;
 import com.vaadin.flow.component.html.Span;
 import com.vaadin.flow.component.orderedlayout.VerticalLayout;
+import com.vaadin.flow.component.tabs.Tab;
+import com.vaadin.flow.component.tabs.Tabs;
 import com.vaadin.flow.component.textfield.TextArea;
 import com.vaadin.flow.component.textfield.TextField;
 import com.vaadin.flow.data.binder.Binder;
@@ -143,7 +145,17 @@ public class MainView extends VerticalLayout {
             System.out.println("Employee size : " + employee.size());
         });
 
-        add(span, button, nameField, saveButton, textArea, checkBox, group, box, peopleBox, grid, removeButton);
+        Tab tab1 = new Tab("Orders");
+        Tab tab2 = new Tab("Payments");
+        Tab tab3 = new Tab("Services");
+        tab3.setEnabled(false);
+
+        Tabs mainTab = new Tabs(tab1, tab2, tab3);
+        mainTab.setSelectedTab(tab2);
+        mainTab.setOrientation(Tabs.Orientation.VERTICAL);
+
+
+        add(span, button, nameField, saveButton, textArea, checkBox, group, box, peopleBox, grid, removeButton, mainTab);
     }
 
 
