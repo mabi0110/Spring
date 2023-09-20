@@ -132,6 +132,7 @@ public class MainView extends VerticalLayout {
         grid.setItems(employee);
 
         grid.addThemeVariants(GridVariant.LUMO_ROW_STRIPES);
+        grid.setSelectionMode(Grid.SelectionMode.MULTI);
 
         Button removeButton = new Button("Remove");
         removeButton.addClickListener(event -> {
