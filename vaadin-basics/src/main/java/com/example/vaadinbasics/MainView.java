@@ -136,7 +136,8 @@ public class MainView extends VerticalLayout {
 
         Button removeButton = new Button("Remove");
         removeButton.addClickListener(event -> {
-            System.out.println(grid.getSelectedItems());
+            System.out.println("Employee size : " + employee.size());
+            System.out.println("Selected items: " + grid.getSelectedItems());
             employee.removeAll(grid.getSelectedItems());
             // refresh the grid
             grid.getDataProvider().refreshAll();
