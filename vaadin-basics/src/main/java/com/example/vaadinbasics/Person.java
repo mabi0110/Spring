@@ -1,9 +1,18 @@
 package com.example.vaadinbasics;
 
+import jakarta.validation.constraints.Email;
+import jakarta.validation.constraints.NotEmpty;
+
 public class Person {
+
+    @NotEmpty
     private String name;
 
+    @NotEmpty
+    @Email
     private String email;
+
+    // age is optional
     private int age;
 
     public Person(){}
