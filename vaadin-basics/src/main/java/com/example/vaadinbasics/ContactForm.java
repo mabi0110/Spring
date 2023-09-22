@@ -6,6 +6,7 @@ import com.vaadin.flow.component.orderedlayout.VerticalLayout;
 import com.vaadin.flow.component.textfield.TextField;
 import com.vaadin.flow.data.binder.BeanValidationBinder;
 import com.vaadin.flow.data.binder.Binder;
+import com.vaadin.flow.data.binder.PropertyId;
 import com.vaadin.flow.data.binder.ValidationException;
 import com.vaadin.flow.router.PageTitle;
 import com.vaadin.flow.router.Route;
@@ -14,9 +15,12 @@ import com.vaadin.flow.router.Route;
 @Route("/contact")
 public class ContactForm extends VerticalLayout {
 
-    private TextField name;
-    private TextField email;
-    private TextField age;
+    @PropertyId("name")
+    private TextField nameField;
+    @PropertyId("email")
+    private TextField emailField;
+    @PropertyId("age")
+    private TextField ageField;
     private Button saveButton;
     private Person person;
     private Binder<Person> binder;
@@ -32,7 +36,7 @@ public class ContactForm extends VerticalLayout {
         binder.readBean(person);
     }
     private void addComponents() {
-        add(name, email, age, saveButton);
+        add(nameField, emailField, ageField, saveButton);
     }
 
     private void initBinder() {
@@ -42,9 +46,9 @@ public class ContactForm extends VerticalLayout {
 
     private void initComponents() {
         person = new Person();
-        name = new TextField("Name");
-        email = new TextField("Email");
-        age = new TextField("Age");
+        nameField = new TextField("Name");
+        emailField = new TextField("Email");
+        ageField = new TextField("Age");
         saveButton = new Button("Save", event -> {
             try {
                 // this is when the fields (UI component) are injected into the java object (Person)
