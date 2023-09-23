@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns:th="https://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
     <title>Promocje</title>
@@ -11,22 +11,22 @@
 </head>
 <body>
     <h1>Dodaj promocje</h1>
-    <form method="post" action="/save">
+    <form method="post" action="/save" th:object="${promotion}">
         <label>
             Nazwa produktu:
-            <input type="text" name="product">
+            <input th:field="*{product}" type="text">
         </label>
         <label>
             Sklep:
-            <input type="text" name="shop">
+            <input th:field="*{shop}" type="text">
         </label>
         <label>
             Cena:
-            <input type="number" step="0.01" name="price">
+            <input th:field="*{price}" type="number" step="0.01">
         </label>
         <label>
             Cena promocyjna:
-            <input type="number" step="0.01" name="discountPrice">
+            <input th:field="*{discountPrice}" type="number" step="0.01">
         </label>
 
         <button type="submit">Dodaj</button>
