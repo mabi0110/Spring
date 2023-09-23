@@ -5,6 +5,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.util.UriComponentsBuilder;
 
 import java.util.Optional;
 
@@ -23,9 +24,13 @@ public class NoteController {
         boolean saved = noteService.save(noteToSave);
         if (saved) {
             model.addAttribute("note", noteToSave);
-            return "note";
+            return UriComponentsBuilder
+                    .fromPath("redirect:note")
+                    .queryParam("id", id)
+                    .build().toString();
+            //return "redirect:note?id=" + id;
         } else {
-            return "wrong-data";
+            return "redirect:duplicate";
         }
     }
     
@@ -34,6 +39,11 @@ public class NoteController {
         Optional<Note> note = noteService.findById(id);
         note.ifPresent(n -> model.addAttribute("note", n));
         return "note";
+    }
+
+    @GetMapping("/duplicate")
+    String duplicate() {
+        return "wrong-data";
     }
 
 }
