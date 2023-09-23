@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="https://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Notatka</title>
+</head>
+<body>
+    <div th:if="${note}">
+        <h1>Notatka</h1>
+        <p th:text="|Id: ${note.id}|">Id: 123</p>
+        <p th:text="|Dodana: ${#temporals.format(note.timeAdded, 'dd-MM-yyyy HH:mm')}|">Dodana: 23.09.2023</p>
+        <p th:text="|Treść: ${note.text}|">Treść: testowa notatka</p>
+    </div>
+    <h1 th:unless="${note}">Nie ma notatki o wskazanym id</h1>
+</body>
+</html>
