@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Promocje</title>
+    <style>
+        label {
+            display: block;
+        }
+    </style>
+</head>
+<body>
+    <h1>Dodaj promocje</h1>
+    <form method="post" action="/save">
+        <label>
+            Nazwa produktu:
+            <input type="text" name="product">
+        </label>
+        <label>
+            Sklep:
+            <input type="text" name="shop">
+        </label>
+        <label>
+            Cena:
+            <input type="number" step="0.01" name="price">
+        </label>
+        <label>
+            Cena promocyjna:
+            <input type="number" step="0.01" name="discountPrice">
+        </label>
+
+        <button type="submit">Dodaj</button>
+    </form>
+
+</body>
+</html>
