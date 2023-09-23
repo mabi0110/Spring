@@ -5,6 +5,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.servlet.view.RedirectView;
 import org.springframework.web.util.UriComponentsBuilder;
 
 import java.util.Optional;
@@ -19,18 +20,18 @@ public class NoteController {
     }
 
     @PostMapping("/save")
-    String saveNote(@RequestParam String id, @RequestParam String text, Model model) {
+    RedirectView saveNote(@RequestParam String id, @RequestParam String text, Model model) {
         Note noteToSave = new Note(id, text);
         boolean saved = noteService.save(noteToSave);
         if (saved) {
             model.addAttribute("note", noteToSave);
-            return UriComponentsBuilder
-                    .fromPath("redirect:note")
+            String redirectUri = UriComponentsBuilder
+                    .fromPath("note")
                     .queryParam("id", id)
                     .build().toString();
-            //return "redirect:note?id=" + id;
+            return new RedirectView(redirectUri, true, false);
         } else {
-            return "redirect:duplicate";
+            return new RedirectView("duplicate", true, false);
         }
     }
     
