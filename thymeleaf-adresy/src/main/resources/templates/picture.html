@@ -3,13 +3,13 @@
 <head>
     <meta charset="UTF-8">
     <title th:text="${picture.title}">Zdjęcie testowe</title>
-    <link rel="stylesheet" href="/styles/main.css">
+    <link rel="stylesheet" th:href="@{/styles/main.css}">
 </head>
 <body>
 <div class="container">
-    <img th:src="|images/${picture.fileName}|" th:alt="${picture.title}" class="pic">
+    <img th:src="@{|images/${picture.fileName}|}" th:alt="${picture.title}" class="pic">
     <p th:text="${picture.title}">Tytuł zdjęcia</p>
-    <p><a href="/">Strona główna</a> </p>
+    <p><a th:href="@{/}">Strona główna</a> </p>
 </div>
 </body>
 </html>
