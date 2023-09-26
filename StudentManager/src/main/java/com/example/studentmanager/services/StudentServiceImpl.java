@@ -33,6 +33,6 @@ public class StudentServiceImpl implements StudentService{
 
     @Override
     public List<Student> find(String substring) {
-        return null;
+        return studentRepository.findStudents(substring);
     }
 }
