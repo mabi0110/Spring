@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="https://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Lista pracowników</title>
+    <link rel="stylesheet" href="../static/styles.css" th:href="@{/styles.css}">
+</head>
+<body>
+<div class="container">
+    <h1>Lista pracowników</h1>
+    <p th:text="|Średnia wypłata: ${avgSalary} zł|">Średnia wyplata: 2222 zl</p>
+    <table>
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Imię</th>
+                <th>Nazwisko</th>
+                <th>Wypłata</th>
+            </tr>
+        </thead>
+        <tbody th:remove="all-but-first">
+            <tr class="odd-row"
+                th:each="employee, status : ${employees}"
+                th:class="${status.odd ? 'odd-row' : ''}"
+                th:object="${employee}">
+                <td th:text="*{id}">1</td>
+                <td th:text="*{firstName}">Jan</td>
+                <td th:text="*{lastName}">Nowak</td>
+                <td th:text="*{salary}"
+                    class="below-avg"
+                th:class="*{salary} ge ${avgSalary} ? 'above-avg' : 'below-avg'">
+                    1111 zł
+                </td>
+            </tr>
+            <tr>
+                <td>2</td>
+                <td>Ala</td>
+                <td>Nowak</td>
+                <td class="above-avg">2222 zł</td>
+            </tr>
+            <tr class="odd-row">
+                <td>3</td>
+                <td>Ola</td>
+                <td>Nowak</td>
+                <td class="above-avg">3333 zł</td>
+            </tr>
+        </tbody>
+    </table>
+</div>
+</body>
+</html>
