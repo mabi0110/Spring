@@ -7,17 +7,15 @@ import org.springframework.web.bind.annotation.GetMapping;
 @Controller
 public class CounterController {
 
-    private static final String COUNTER_NAME = "counter";
+    private final VisitCounter visitCounter;
+
+    public CounterController(VisitCounter visitCounter) {
+        this.visitCounter = visitCounter;
+    }
 
     @GetMapping("/")
     String counter(HttpSession session){
-        Integer counter = (Integer) session.getAttribute(COUNTER_NAME);
-        if (counter != null){
-            counter++;
-        } else {
-            counter = 1;
-        }
-        session.setAttribute(COUNTER_NAME, counter);
+        visitCounter.increment();
         return "index";
     }
 
