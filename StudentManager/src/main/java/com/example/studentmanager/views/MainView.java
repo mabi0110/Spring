@@ -3,6 +3,7 @@ package com.example.studentmanager.views;
 import com.example.studentmanager.model.Student;
 import com.example.studentmanager.services.StudentService;
 import com.vaadin.flow.component.Component;
+import com.vaadin.flow.component.button.Button;
 import com.vaadin.flow.component.grid.Grid;
 import com.vaadin.flow.component.icon.Icon;
 import com.vaadin.flow.component.icon.VaadinIcon;
@@ -43,7 +44,14 @@ public class MainView extends VerticalLayout {
         filterField.setClearButtonVisible(true);
         filterField.setValueChangeMode(ValueChangeMode.LAZY);
         filterField.addValidationStatusChangeListener(e -> updateStudents());
-        return new HorizontalLayout(filterField);
+        Button addStudentButton = new Button("Add student");
+        Button removeStudentButton = new Button("Remove student");
+
+        addStudentButton.addClickListener(e ->
+                getUI().ifPresent(ui -> ui.navigate("add-student")));
+
+
+        return new HorizontalLayout(filterField, addStudentButton, removeStudentButton);
     }
 
     private void updateStudents() {
