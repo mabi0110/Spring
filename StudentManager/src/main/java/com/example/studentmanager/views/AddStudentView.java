@@ -1,6 +1,9 @@
 package com.example.studentmanager.views;
 
 import com.example.studentmanager.model.Status;
+import com.example.studentmanager.model.Student;
+import com.example.studentmanager.services.StatusService;
+import com.example.studentmanager.services.StudentService;
 import com.vaadin.flow.component.Component;
 import com.vaadin.flow.component.button.Button;
 import com.vaadin.flow.component.button.ButtonVariant;
@@ -12,9 +15,15 @@ import com.vaadin.flow.component.textfield.TextField;
 import com.vaadin.flow.router.PageTitle;
 import com.vaadin.flow.router.Route;
 
+import java.util.List;
+
 @PageTitle("Add student")
 @Route(value = "add-student")
 public class AddStudentView extends VerticalLayout {
+
+    private final StudentService studentService;
+
+    private final StatusService statusService;
 
     private TextField age;
     private TextField zipCode;
@@ -25,12 +34,23 @@ public class AddStudentView extends VerticalLayout {
     private Button save;
     private Button close;
 
-    public AddStudentView(){
+    public AddStudentView(StudentService studentService, StatusService statusService){
+        this.studentService = studentService;
+        this.statusService = statusService;
+
         setAlignItems(Alignment.CENTER);
         createVariables();
+        createStatus();
 
         add(image);
         add(createFormLayout());
+    }
+
+    private void createStatus() {
+        List<Status> statusItems = statusService.findAll();
+        status.setItems(statusItems);
+        status.setValue(statusItems.get(0));
+        status.setItemLabelGenerator(Status::getName);
     }
 
     private Component createFormLayout() {
