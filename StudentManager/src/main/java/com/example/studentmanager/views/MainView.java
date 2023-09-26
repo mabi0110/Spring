@@ -2,6 +2,7 @@ package com.example.studentmanager.views;
 
 import com.example.studentmanager.model.Status;
 import com.example.studentmanager.model.Student;
+import com.example.studentmanager.services.StudentService;
 import com.vaadin.flow.component.grid.Grid;
 import com.vaadin.flow.component.icon.Icon;
 import com.vaadin.flow.component.icon.VaadinIcon;
@@ -16,10 +17,13 @@ import java.util.List;
 @PageTitle(value = "Home")
 public class MainView extends VerticalLayout {
 
+    private final StudentService studentService;
     private LogoLayout logoLayout;
     private Grid<Student> grid;
 
-    public MainView(){
+    public MainView(StudentService studentService){
+        this.studentService = studentService;
+
         setSizeFull();
         setAlignItems(Alignment.CENTER);
 
@@ -54,10 +58,7 @@ public class MainView extends VerticalLayout {
     }
 
     private void loadStudents() {
-        List<Student> students = new ArrayList<>();
-        students.add(new Student("Adam", 23, 11223, "PL", new Status("ACTIVE")));
-        students.add(new Student("Ala", 20, 12225, "PL", new Status("NOT ACTIVE")));
-        students.add(new Student("Ula", 26, 25312, "PL", new Status("ABSOLVED")));
+        List<Student> students = studentService.findAll();
         grid.setItems(students);
     }
 
