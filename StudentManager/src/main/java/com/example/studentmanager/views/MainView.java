@@ -50,6 +50,9 @@ public class MainView extends VerticalLayout {
         addStudentButton.addClickListener(e ->
                 getUI().ifPresent(ui -> ui.navigate("add-student")));
 
+        removeStudentButton.addClickListener(e ->
+                getUI().ifPresent(ui -> ui.navigate("remove-student")));
+
 
         return new HorizontalLayout(filterField, addStudentButton, removeStudentButton);
     }

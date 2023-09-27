@@ -1,6 +1,7 @@
 package com.example.studentmanager.model;
 
 import jakarta.persistence.*;
+import jakarta.validation.constraints.NotNull;
 
 @Entity
 @Table
@@ -9,6 +10,8 @@ public class Student {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
+
+
     private String name;
     private int age;
     private int zipCode;
