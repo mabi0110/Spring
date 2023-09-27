@@ -1,7 +1,7 @@
 package com.example.studentmanager.model;
 
 import jakarta.persistence.*;
-import jakarta.validation.constraints.NotNull;
+import jakarta.validation.constraints.*;
 
 @Entity
 @Table
@@ -11,10 +11,20 @@ public class Student {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
 
-
+    @NotEmpty(message = "Name must be specified")
     private String name;
+
+    @Min(value = 0, message = "Age can not be smaller than 0")
+    @Max(value = 120, message = "Age can not be greater than 120")
+    @NotNull(message = "Age must be specified")
     private int age;
+
+    @Min(value = 0, message = "Zip code can not be smaller than 0")
+    @Max(value = 99999, message = "Zip code can not be greater than 99999")
+    @NotNull(message = "Zip code must be specified")
+    @Digits(integer = 5, fraction = 0, message = "Zip code is a 5 digit number")
     private int zipCode;
+    @NotEmpty(message = "Country must be specified")
     private String country;
 
     @ManyToOne
