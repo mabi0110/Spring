@@ -1,5 +1,6 @@
 package com.example.studentmanager.views;
 
+import com.example.studentmanager.constants.Constants;
 import com.example.studentmanager.model.Status;
 import com.example.studentmanager.model.Student;
 import com.example.studentmanager.services.StatusService;
@@ -89,7 +90,7 @@ public class AddStudentView extends VerticalLayout {
             binder.writeBean(student);
             studentService.save(student);
             clearFields();
-            Notification notification = Notification.show("Student saved successfully");
+            Notification notification = Notification.show(Constants.STUDENT_SAVED);
             notification.addThemeVariants(NotificationVariant.LUMO_SUCCESS);
             notification.setPosition(Notification.Position.TOP_CENTER);
         } catch (ValidationException e) {
@@ -108,14 +109,14 @@ public class AddStudentView extends VerticalLayout {
     }
 
     private void createVariables() {
-        age = new TextField("Age");
-        name = new TextField("Name");
-        country = new TextField("Country");
-        zipCode = new TextField("Zip code");
-        status = new ComboBox<Status>("Status");
+        age = new TextField(Constants.AGE);
+        name = new TextField(Constants.NAME);
+        country = new TextField(Constants.COUNTRY);
+        zipCode = new TextField(Constants.ZIP_CODE);
+        status = new ComboBox<>(Constants.STATUS);
         image = new LogoLayout();
-        save = new Button("Save");
-        close = new Button("Cancel");
+        save = new Button(Constants.SAVE);
+        close = new Button(Constants.CANCEL);
     }
 
 }

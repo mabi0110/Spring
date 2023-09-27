@@ -1,5 +1,6 @@
 package com.example.studentmanager.views;
 
+import com.example.studentmanager.constants.Constants;
 import com.example.studentmanager.model.Student;
 import com.example.studentmanager.services.StudentService;
 import com.vaadin.flow.component.Component;
@@ -62,7 +63,7 @@ public class RemoveStudentView extends VerticalLayout implements SelectionListen
 
     private void removeSelected() {
         selected.forEach(studentService::remove);
-        Notification notification = Notification.show("Student(s) removed successfully");
+        Notification notification = Notification.show(Constants.STUDENT_REMOVED);
         notification.addThemeVariants(NotificationVariant.LUMO_SUCCESS);
         notification.setPosition(Notification.Position.TOP_CENTER);
         // remove the students from the grid (update the grid)
@@ -77,8 +78,8 @@ public class RemoveStudentView extends VerticalLayout implements SelectionListen
     private void configureGrid() {
         grid.setSizeFull();
         grid.setColumns("country", "zipCode");
-        grid.addColumn(Student::getName).setHeader("Name");
-        grid.addColumn(Student::getAge).setHeader("Age");
+        grid.addColumn(Student::getName).setHeader(Constants.NAME);
+        grid.addColumn(Student::getAge).setHeader(Constants.AGE);
         grid.addComponentColumn(s -> {
             Icon icon;
 
@@ -93,13 +94,13 @@ public class RemoveStudentView extends VerticalLayout implements SelectionListen
                 icon.setColor("orange");
             }
             return icon;
-        }).setHeader("Status");
+        }).setHeader(Constants.STATUS);
     }
 
     private void createFieldVariables() {
         grid = new Grid<>(Student.class);
-        remove = new Button("Remove");
-        cancel = new Button("Cancel");
+        remove = new Button(Constants.REMOVE);
+        cancel = new Button(Constants.CANCEL);
     }
 
     @Override
