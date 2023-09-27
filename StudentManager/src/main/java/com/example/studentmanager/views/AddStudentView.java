@@ -5,6 +5,7 @@ import com.example.studentmanager.model.Student;
 import com.example.studentmanager.services.StatusService;
 import com.example.studentmanager.services.StudentService;
 import com.vaadin.flow.component.Component;
+import com.vaadin.flow.component.HasValue;
 import com.vaadin.flow.component.button.Button;
 import com.vaadin.flow.component.button.ButtonVariant;
 import com.vaadin.flow.component.combobox.ComboBox;
@@ -12,6 +13,9 @@ import com.vaadin.flow.component.formlayout.FormLayout;
 import com.vaadin.flow.component.orderedlayout.HorizontalLayout;
 import com.vaadin.flow.component.orderedlayout.VerticalLayout;
 import com.vaadin.flow.component.textfield.TextField;
+import com.vaadin.flow.data.binder.BeanValidationBinder;
+import com.vaadin.flow.data.binder.Binder;
+import com.vaadin.flow.data.binder.ValidationException;
 import com.vaadin.flow.router.PageTitle;
 import com.vaadin.flow.router.Route;
 
@@ -33,6 +37,8 @@ public class AddStudentView extends VerticalLayout {
     private LogoLayout image;
     private Button save;
     private Button close;
+    private Student student;
+    private Binder<Student> binder;
 
     public AddStudentView(StudentService studentService, StatusService statusService){
         this.studentService = studentService;
@@ -41,9 +47,16 @@ public class AddStudentView extends VerticalLayout {
         setAlignItems(Alignment.CENTER);
         createVariables();
         createStatus();
+        crateBinder();
 
         add(image);
         add(createFormLayout());
+    }
+
+    private void crateBinder() {
+        student = new Student();
+        binder = new BeanValidationBinder<>(Student.class);
+        binder.bindInstanceFields(this);
     }
 
     private void createStatus() {
@@ -62,7 +75,31 @@ public class AddStudentView extends VerticalLayout {
     private Component createButtons() {
         save.addThemeVariants(ButtonVariant.LUMO_PRIMARY);
         close.addThemeVariants(ButtonVariant.LUMO_TERTIARY);
+
+        close.addClickListener(e -> closeView());
+        save.addClickListener(e -> saveStudent());
+
         return new HorizontalLayout(save, close);
+    }
+
+    private void saveStudent() {
+        try {
+            binder.writeBean(student);
+            studentService.save(student);
+            clearFields();
+        } catch (ValidationException e) {
+            throw new RuntimeException(e);
+        }
+    }
+
+    private void clearFields() {
+        student = new Student();
+        status.setValue(statusService.findAll().get(0));
+        binder.getFields().forEach(HasValue::clear);
+    }
+
+    private void closeView() {
+        getUI().ifPresent(ui -> ui.navigate(""));
     }
 
     private void createVariables() {
