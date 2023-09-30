@@ -12,10 +12,9 @@
             <column name="name" type="VARCHAR(100)"/>
             <column name="description" type="VARCHAR(1000)"/>
             <column name="city" type="VARCHAR(100)"/>
-            <column name="description" type="VARCHAR(100)"/>
             <column name="employees" type="INT"/>
             <column name="telephone" type="VARCHAR(20)"/>
-            <column name="email" type="VARCHAR(100)"/>
+            <column name="email" type="VARCHAR(200)"/>
         </createTable>
     </changeSet>
     <changeSet id="0002" author="mabi0110">
@@ -24,10 +23,10 @@
                 <constraints nullable="false" primaryKey="true"/>
             </column>
             <column name="title" type="VARCHAR(100)"/>
-            <column name="description" type="VARCHAR(1000)"/>
+            <column name="description" type="VARCHAR(500)"/>
             <column name="requirements" type="VARCHAR(1000)"/>
             <column name="duties" type="VARCHAR(1000)"/>
-            <column name="location" type="VARCHAR(100)"/>
+            <column name="location" type="VARCHAR(200)"/>
             <column name="min_salary" type="DOUBLE"/>
             <column name="max_salary" type="DOUBLE"/>
             <column name="submissions" type="INT"/>

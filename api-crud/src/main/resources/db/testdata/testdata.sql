@@ -10,7 +10,7 @@ INSERT INTO
 VALUES
     ('Senior java developer', 'Dołącz do naszego zespołu i twórz nowoczesne aplikacje',
      '2 lata doświadczenia w programowaniu w Javie 8+. Znajomość frameworków Spring i Hibernate',
-     'Rozwój istniejącej aplikacji webowej tworzonej dla jednego ze sklepów wielkopowoerzchniowych',
+     'Rozwój istniejącej aplikacji webowej tworzonej dla jednego ze sklepów wielkopowierzchniowych',
      'Wrocław', 5000, 9000, '2021-01-01 12:00:00', 22, 1),
     ('Python developer', 'Twórz aplikacje dla czołowych firm MSP',
      'Wymagamy dobrej znajomości Pythona i frameworka Django, a także relacyjnych baz danych, HTML, CSS i JavaScriptu',
