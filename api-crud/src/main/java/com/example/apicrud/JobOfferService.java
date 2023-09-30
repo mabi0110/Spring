@@ -2,6 +2,7 @@ package com.example.apicrud;
 
 import com.example.apicrud.dto.JobOfferDto;
 import com.example.apicrud.mapper.JobOfferDtoMapper;
+import com.example.apicrud.repository.JobOfferRepository;
 import org.springframework.stereotype.Service;
 
 
@@ -16,7 +17,7 @@ public class JobOfferService {
         this.jobOfferDtoMapper = jobOfferDtoMapper;
     }
 
-    Optional<JobOfferDto> getOfferById(Long id){
+    public Optional<JobOfferDto> getOfferById(Long id){
         return jobOfferRepository.findById(id).map(jobOfferDtoMapper::map);
     }
 }

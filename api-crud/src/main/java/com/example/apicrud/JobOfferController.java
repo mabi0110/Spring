@@ -1,13 +1,10 @@
 package com.example.apicrud;
 
 import com.example.apicrud.dto.JobOfferDto;
-import com.example.apicrud.model.JobOffer;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RestController;
-
-import java.util.Optional;
 
 @RestController
 public class JobOfferController {

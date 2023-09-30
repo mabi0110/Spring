@@ -1,4 +1,4 @@
-package com.example.apicrud;
+package com.example.apicrud.repository;
 
 import com.example.apicrud.model.JobOffer;
 import org.springframework.data.repository.CrudRepository;
