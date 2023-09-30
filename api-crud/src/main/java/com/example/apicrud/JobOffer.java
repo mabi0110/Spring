@@ -1,5 +1,6 @@
 package com.example.apicrud;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 
 import java.time.LocalDateTime;
@@ -21,6 +22,7 @@ public class JobOffer {
     private Integer submissions;
     @ManyToOne(optional = false)
     @JoinColumn(name="company_id")
+    @JsonIgnore
     private Company company;
 
     public JobOffer(){}
