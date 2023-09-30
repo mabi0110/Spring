@@ -1,6 +1,7 @@
 package com.example.apicrud;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonProperty;
 import jakarta.persistence.*;
 
 import java.time.LocalDateTime;
@@ -24,6 +25,11 @@ public class JobOffer {
     @JoinColumn(name="company_id")
     @JsonIgnore
     private Company company;
+
+    @JsonProperty
+    String companyName(){
+        return company.getName();
+    }
 
     public JobOffer(){}
 
