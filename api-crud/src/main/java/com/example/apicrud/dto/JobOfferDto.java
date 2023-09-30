@@ -12,7 +12,7 @@ public class JobOfferDto {
     private Double minSalary;
     private Double maxSalary;
     private LocalDateTime dateAdded;
-    private CompanyDto companyDto;
+    private CompanyDto company;
 
     public Long getId() {
         return id;
@@ -86,11 +86,11 @@ public class JobOfferDto {
         this.dateAdded = dateAdded;
     }
 
-    public CompanyDto getCompanyDto() {
-        return companyDto;
+    public CompanyDto getCompany() {
+        return company;
     }
 
-    public void setCompanyDto(CompanyDto companyDto) {
-        this.companyDto = companyDto;
+    public void setCompany(CompanyDto company) {
+        this.company = company;
     }
 }

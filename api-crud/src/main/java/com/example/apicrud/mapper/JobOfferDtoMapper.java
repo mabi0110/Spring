@@ -19,7 +19,7 @@ public class JobOfferDtoMapper {
         dto.setMinSalary(jobOffer.getMinSalary());
         dto.setMaxSalary(jobOffer.getMaxSalary());
         dto.setDateAdded(jobOffer.getDateAdded());
-        dto.setCompanyDto(new CompanyDto(jobOffer.getCompany().getId(), jobOffer.getCompany().getName()));
+        dto.setCompany(new CompanyDto(jobOffer.getCompany().getId(), jobOffer.getCompany().getName()));
         return dto;
     }
 }
