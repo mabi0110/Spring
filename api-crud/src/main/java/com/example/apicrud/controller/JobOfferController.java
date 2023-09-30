@@ -1,6 +1,7 @@
-package com.example.apicrud;
+package com.example.apicrud.controller;
 
 import com.example.apicrud.dto.JobOfferDto;
+import com.example.apicrud.service.JobOfferService;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;

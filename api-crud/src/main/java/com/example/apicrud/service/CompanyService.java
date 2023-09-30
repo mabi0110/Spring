@@ -1,4 +1,4 @@
-package com.example.apicrud;
+package com.example.apicrud.service;
 
 import com.example.apicrud.dto.CompanyDto;
 import com.example.apicrud.dto.CompanyJobOfferDto;
@@ -26,11 +26,11 @@ public class CompanyService {
         this.companyJobOfferDtoMapper = companyJobOfferDtoMapper;
     }
 
-    Optional<CompanyDto> getCompanyById(Long id) {
+    public Optional<CompanyDto> getCompanyById(Long id) {
         return companyRepository.findById(id).map(companyDtoMapper::map);
     }
 
-    List<CompanyJobOfferDto> getJobOffersByCompanyId(Long id){
+    public List<CompanyJobOfferDto> getJobOffersByCompanyId(Long id){
         return companyRepository.findById(id)
                 .map(Company::getJobOffers)
                 .orElse(Collections.emptyList())

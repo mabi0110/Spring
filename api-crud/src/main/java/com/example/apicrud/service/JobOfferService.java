@@ -1,4 +1,4 @@
-package com.example.apicrud;
+package com.example.apicrud.service;
 
 import com.example.apicrud.dto.JobOfferDto;
 import com.example.apicrud.mapper.JobOfferDtoMapper;
