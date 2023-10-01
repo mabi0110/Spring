@@ -46,7 +46,13 @@ public class CompanyController {
                 .toUri();
 
         return ResponseEntity.created(savedCompanyUri).body(savedCompany);
+    }
 
+    @PutMapping("/{id}")
+    ResponseEntity<?> replaceCompany(@PathVariable Long id, @RequestBody CompanyDto companyDto) {
+        return companyService.replaceCompany(id, companyDto)
+                .map(c -> ResponseEntity.noContent().build())
+                .orElse(ResponseEntity.notFound().build());
     }
 
 }
