@@ -35,7 +35,7 @@ public class CompanyController {
         return ResponseEntity.ok(companyService.getJobOffersByCompanyId(id));
     }
 
-    @PostMapping()
+    @PostMapping
     ResponseEntity<CompanyDto> saveCompany(@RequestBody CompanyDto companyDto){
         CompanyDto savedCompany = companyService.saveCompany(companyDto);
 

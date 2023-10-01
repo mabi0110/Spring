@@ -2,10 +2,12 @@ package com.example.apicrud.service;
 
 import com.example.apicrud.dto.JobOfferDto;
 import com.example.apicrud.mapper.JobOfferDtoMapper;
+import com.example.apicrud.model.JobOffer;
 import com.example.apicrud.repository.JobOfferRepository;
 import org.springframework.stereotype.Service;
 
 
+import java.time.LocalDateTime;
 import java.util.Optional;
 
 @Service
@@ -19,5 +21,12 @@ public class JobOfferService {
 
     public Optional<JobOfferDto> getOfferById(Long id){
         return jobOfferRepository.findById(id).map(jobOfferDtoMapper::map);
+    }
+
+    public JobOfferDto saveOffer(JobOfferDto jobOfferDto){
+        JobOffer jobOfferToSave = jobOfferDtoMapper.map(jobOfferDto);
+        jobOfferToSave.setDateAdded(LocalDateTime.now());
+        JobOffer savedJobOffer = jobOfferRepository.save(jobOfferToSave);
+        return jobOfferDtoMapper.map(savedJobOffer);
     }
 }
